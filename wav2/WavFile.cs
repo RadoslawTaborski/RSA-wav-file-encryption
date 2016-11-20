@@ -18,7 +18,7 @@ namespace wav2
         public string Subchunk2ID { get; private set; }
         public int Subchunk2Size { get; private set; }
         public float[,] Data { get; private set; }
-        public byte[] DataByte { get; private set; }
+        public byte[] DataByte { get; set; }
         public byte[] HeaderByte { get; private set; }
 
         public WavFile(byte[] bytes)

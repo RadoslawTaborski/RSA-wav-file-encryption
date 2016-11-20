@@ -3,7 +3,6 @@ D:\PWr\Semestr_VII\EMedia\wav2\wav2\bin\Debug\wav2.exe
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\bin\Debug\wav2.pdb
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
-D:\PWr\Semestr_VII\EMedia\wav2\wav2\obj\Debug\wav2.csprojResolveAssemblyReference.cache
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\obj\Debug\MainWindow.g.cs
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\obj\Debug\App.g.cs
 D:\PWr\Semestr_VII\EMedia\wav2\wav2\obj\Debug\wav2_MarkupCompile.cache

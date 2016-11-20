@@ -11,15 +11,10 @@ namespace wav2
         public static Key pubKey;
         public static Key privKey;
 
-        private static void createPrimeNumbers()
+        public static void createKeys(int p, int q)
         {
-            p = 233;
-            q = 293;
-        }
-
-        public static void createKeys()
-        {
-            createPrimeNumbers();
+            rsa.p = p;
+            rsa.q = q;
             int euler = (p - 1) * (q - 1);
             int module = p * q;
             int e = relativelyPrime(euler);
