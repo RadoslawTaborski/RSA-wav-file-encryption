@@ -18,6 +18,8 @@ namespace wav2
         public string Subchunk2ID { get; private set; }
         public int Subchunk2Size { get; private set; }
         public float[,] Data { get; private set; }
+        public byte[] DataByte { get; private set; }
+        public byte[] HeaderByte { get; private set; }
 
         public WavFile(byte[] bytes)
         {
@@ -34,6 +36,10 @@ namespace wav2
             BitsPerSample = readValue(bytes, 34, 36);
             Subchunk2ID = readString(bytes, 36, 40);
             Subchunk2Size = readValue(bytes, 40, 44);
+            DataByte = new byte[bytes.Length - 44];
+            HeaderByte = new byte[44];
+            Array.Copy(bytes, 44, DataByte, 0, bytes.Length - 44);
+            Array.Copy(bytes, 0, HeaderByte, 0, 44);
             Data = new float[NumChanels, Subchunk2Size / 2 / NumChanels];
             int index = 0;
             int nr = 44;

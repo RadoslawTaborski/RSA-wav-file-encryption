@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using AForge.Math;
 using System.Windows.Controls.DataVisualization;
 using Microsoft.Win32;
+using System.IO;
+using System.Text;
 
 namespace wav2
 {
@@ -16,6 +18,7 @@ namespace wav2
     public partial class MainWindow : Window
     {
         public WavFile wav;
+        public byte[] xyz;
         public ObservableCollection<DataPoint> Points { get; private set; }
 
         public MainWindow()
@@ -47,7 +50,7 @@ namespace wav2
                 Chart1.Series.Clear();
                 Chart1.Axes.Clear();
 
-                tbPath.Text=okienko.FileName;
+                tbPath.Text = okienko.FileName;
                 Points = new ObservableCollection<DataPoint>();
                 byte[] bytes = System.IO.File.ReadAllBytes(okienko.FileName);
                 wav = new WavFile(bytes);
@@ -112,6 +115,36 @@ namespace wav2
                 Chart1.Axes.Add(axisY);
                 Chart1.LegendStyle = HideLegendStyle;
 
+            }
+        }
+
+        private void Keys_Click(object sender, RoutedEventArgs e)
+        {
+            rsa.createKeys();
+            //byte[] tabelka = new byte[] { 241, 127, 50, 185};
+            //xyz = rsa.encrypt(tabelka);
+            xyz =rsa.encrypt(wav.DataByte);
+            File.WriteAllBytes("C:\\Users\\rados\\Desktop\\sinusEncrypt.wav", wav.HeaderByte);
+            AppendAllBytes("C:\\Users\\rados\\Desktop\\sinusEncrypt.wav", xyz);
+            Console.WriteLine("Koniec");
+        }
+
+        private void Decrypt_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] data;
+            data = rsa.decrypt(xyz);
+            File.WriteAllBytes("C:\\Users\\rados\\Desktop\\sinusDecrypt.wav", wav.HeaderByte);
+            AppendAllBytes("C:\\Users\\rados\\Desktop\\sinusDecrypt.wav", data);
+            Console.WriteLine("Koniec");
+        }
+
+        public static void AppendAllBytes(string path, byte[] bytes)
+        {
+            //argument-checking here.
+
+            using (var stream = new FileStream(path, FileMode.Append))
+            {
+                stream.Write(bytes, 0, bytes.Length);
             }
         }
     }
